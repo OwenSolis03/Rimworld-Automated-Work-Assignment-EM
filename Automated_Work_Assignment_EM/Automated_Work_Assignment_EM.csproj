@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net481</TargetFramework>
         <Nullable>disable</Nullable>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

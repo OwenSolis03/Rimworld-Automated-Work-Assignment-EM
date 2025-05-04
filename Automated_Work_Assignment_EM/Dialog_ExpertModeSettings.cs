@@ -74,13 +74,15 @@ namespace Automated_Work_Assignment_EM
 
             // Populate and sort the cache with relevant work types. This is done on every dialog creation
             // to ensure dynamically added/removed work types from other mods are reflected.
+// Always refresh the list of relevant WorkTypeDefs when the dialog is opened
+            // Filter matches base AWA (shows all work types with WorkTags != None, regardless of relevantSkills)
             relevantWorkTypesCache = DefDatabase<WorkTypeDef>.AllDefsListForReading
-                .Where(wtd => wtd != null && wtd.workTags != WorkTags.None) // Filter: Must exist and have work tags.
-                .OrderBy(wtd => wtd.labelShort) // Sort alphabetically by the short label shown in UI.
+                .Where(wtd => wtd != null && wtd.workTags != WorkTags.None) // <-- Filtro modificado (SIN chequeo de skills)
+                .OrderBy(wtd => wtd.labelShort)
                 .ToList();
 
             // Set the window title using a translation key for localization.
-            this.optionalTitle = "AWA_ExpertMode_RuleWindowTitle".Translate(); // TODO: Ensure translation key exists.
+            this.optionalTitle = "AWA_ExpertMode_RuleWindowTitle".Translate();
         }
 
         /// <summary>
